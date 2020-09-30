@@ -1,16 +1,23 @@
 svg {
   display: block;
   width: 100%;
-  height: 300px;
+  height: 200px;
+  background: #f7f7f7;
+  overflow: visible;
 }
 
-svg .country:hover {
-  stroke: black;
-  stroke-width: 1px;
-  cursor: pointer;
+svg rect.selection {
+  stroke: none;
+}
+
+table {
+  height: 200px;
+  background: #eee;
 }
 
 #root {
+  max-width: 600px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: stretch;

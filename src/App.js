@@ -1,24 +1,25 @@
 import React, { useState } from "react";
 // import Video from "./Video";
-import GeoChart from "./GeoChart";
-import data from "./GeoChart.world.geo.json";
 import "./App.css";
+import BrushChart from "./BrushChart";
+import BrushChartChild from "./BrushChartChild";
 
 function App() {
-  const [property, setProperty] = useState("pop_est");
+  const [data, setData] = useState(
+    Array.from({ length: 30 }).map(() => Math.round(Math.random() * 100))
+  );
+  const onAddDataClick = () =>
+    setData([...data, Math.round(Math.random() * 100)]);
+
   return (
     <React.Fragment>
-      <h2>World Map with d3-geo</h2>
-      <GeoChart data={data} property={property} />
-      <h2>Select property to highlight</h2>
-      <select
-        value={property}
-        onChange={event => setProperty(event.target.value)}
-      >
-        <option value="pop_est">Population</option>
-        <option value="name_len">Name length</option>
-        <option value="gdp_md_est">GDP</option>
-      </select>
+      <h2>Visually filtering data with d3-brush</h2>
+
+      <BrushChart data={data}>
+        {selection => <BrushChartChild data={data} selection={selection} />}
+      </BrushChart>
+      <button onClick={onAddDataClick}>Add data</button>
+
       {/* <Video /> */}
     </React.Fragment>
   );
