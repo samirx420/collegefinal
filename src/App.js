@@ -1,26 +1,47 @@
 import React, { useState } from "react";
-// import Video from "./Video";
 import "./App.css";
-import BrushChart from "./BrushChart";
-import BrushChartChild from "./BrushChartChild";
+import PieChart from "./PieChart";
 
 function App() {
-  const [data, setData] = useState(
-    Array.from({ length: 30 }).map(() => Math.round(Math.random() * 100))
-  );
-  const onAddDataClick = () =>
-    setData([...data, Math.round(Math.random() * 100)]);
+  const [data, setData] = useState([
+    {
+      name: "apples",
+      value: 100
+    },
+    {
+      name: "bananas",
+      value: 300
+    },
+    {
+      name: "cherries",
+      value: 250
+    }
+  ]);
 
   return (
     <React.Fragment>
-      <h2>Visually filtering data with d3-brush</h2>
-
-      <BrushChart data={data}>
-        {selection => <BrushChartChild data={data} selection={selection} />}
-      </BrushChart>
-      <button onClick={onAddDataClick}>Add data</button>
-
-      {/* <Video /> */}
+      <h1>Pie Chart</h1>
+      <PieChart data={data} />
+      <button
+        onClick={() => {
+          setData([
+            {
+              name: "apples",
+              value: Math.round(Math.random() * 100)
+            },
+            {
+              name: "bananas",
+              value: Math.round(Math.random() * 200)
+            },
+            {
+              name: "cherries",
+              value: Math.round(Math.random() * 300)
+            }
+          ]);
+        }}
+      >
+        Randomize
+      </button>
     </React.Fragment>
   );
 }
