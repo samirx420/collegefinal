@@ -1,3 +1,3 @@
-git checkout 05-linechart-filter-brush
+git checkout 06-stacked-charts
 npm install 
 npm start
