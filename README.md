@@ -1,3 +1,3 @@
-git checkout 01-animatedbarchart
+git checkout 03-geo
 npm install 
 npm start

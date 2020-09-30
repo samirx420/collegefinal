@@ -1,21 +1,25 @@
 import React, { useState } from "react";
+// import Video from "./Video";
+import GeoChart from "./GeoChart";
+import data from "./GeoChart.world.geo.json";
 import "./App.css";
-import ZoomableLineChart from "./ZoomableLineChart";
 
 function App() {
-  const [data, setData] = useState(
-    Array.from({ length: 50 }, () => Math.round(Math.random() * 100))
-  );
-
+  const [property, setProperty] = useState("pop_est");
   return (
     <React.Fragment>
-      <h2>Zoomable Line Chart with D3 </h2>
-      <ZoomableLineChart data={data} />
-      <button
-        onClick={() => setData([...data, Math.round(Math.random() * 100)])}
+      <h2>World Map with d3-geo</h2>
+      <GeoChart data={data} property={property} />
+      <h2>Select property to highlight</h2>
+      <select
+        value={property}
+        onChange={event => setProperty(event.target.value)}
       >
-        Add data
-      </button>
+        <option value="pop_est">Population</option>
+        <option value="name_len">Name length</option>
+        <option value="gdp_md_est">GDP</option>
+      </select>
+      {/* <Video /> */}
     </React.Fragment>
   );
 }
